@@ -1,0 +1,22 @@
+$url_origin = 'https://resource.pokemon-home.com/battledata/img/poke/'
+for ($i=1; $i -lt 899; $i++){
+    switch($i){
+        {$_ -lt 1000} {$num = "0$_"}
+        {$_ -lt 100} {$num = "00$_"}
+        {$_ -lt 10} {$num = "000$_"}
+    }
+    for ($j=0; $j -lt 18; $j++){
+        switch($j){
+            {$_ -lt 10} {$num_f = "0$_"}
+            default {$num_f = "$_"}
+        }
+        $url_poke = "cap"+$num + "_f" + $num_f + "_s0.png"
+        $url = $url_origin + $url_poke
+        $save = 'C:\Users\1013o\Pictures\poke_pic\' + $url_poke
+        try{
+            Invoke-WebRequest $url -OutFile $save
+        } catch{
+            break
+        }
+    }
+}
